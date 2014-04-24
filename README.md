@@ -68,27 +68,27 @@ noam@linux-noam:/data/nginx-1.0.5$
 
 
 
-<p style="font-size:20px"><u>NGinx Load Balancer:</u></p>
+<p style="font-size:20px">NGinx Load Balancer:</p>
 sudo vim /usr/local/nginx/conf/nginx.conf
 
-upstream nodejs {
-      ip_hash;
-      server localhost:8080 max_fails=3 fail_timeout=30s; # Reverse proxy to machine-1
-      server localhost:8081 max_fails=3 fail_timeout=30s; # Reverse proxy to machine-2
-}
-
-server {
-      listen       8090;
-      server_name  localhost;
-      #charset koi8-r;
-      #access_log  logs/host.access.log  main;
-
+upstream nodejs { <br>
+      ip_hash; <br>
+      server localhost:8080 max_fails=3 fail_timeout=30s; # Reverse proxy to machine-1 <br>
+      server localhost:8081 max_fails=3 fail_timeout=30s; # Reverse proxy to machine-2 <br>
+} <br>
+ <br>
+server { <br>
+      listen       8090; <br>
+      server_name  localhost; <br>
+      #charset koi8-r; <br>
+      #access_log  logs/host.access.log  main; <br>
+ <br>
       location / {
           proxy_pass http://nodejs; # Load balance the URL location "/" to the upstream lb-subprint
           proxy_set_header Connection 'upgrade';
           proxy_set_header Host $host;
       }
-...
+... <br>
 }
 
 
