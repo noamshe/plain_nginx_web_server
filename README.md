@@ -82,13 +82,13 @@ server { <br>
       server_name  localhost; <br>
       #charset koi8-r; <br>
       #access_log  logs/host.access.log  main; <br>
- <br>
+
       location / {
           proxy_pass http://nodejs; # Load balance the URL location "/" to the upstream lb-subprint
           proxy_set_header Connection 'upgrade';
           proxy_set_header Host $host;
       }
-... <br>
+... 
 }
 
 
