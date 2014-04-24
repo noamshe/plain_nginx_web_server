@@ -68,7 +68,7 @@ noam@linux-noam:/data/nginx-1.0.5$
 
 
 
-NGinx Load Balancer:
+<label style="font-size='15px'">NGinx Load Balancer:</label>
 sudo vim /usr/local/nginx/conf/nginx.conf
 
 upstream nodejs {
