@@ -65,3 +65,34 @@ noam@linux-noam:/data/nginx-1.0.5$ sudo !!
 sudo /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
 noam@linux-noam:/data/nginx-1.0.5$ 
 
+
+
+
+
+
+
+NGinx Load Balancer:
+sudo vim /usr/local/nginx/conf/nginx.conf
+
+upstream nodejs {
+      ip_hash;
+      server localhost:8080 max_fails=3 fail_timeout=30s; # Reverse proxy to machine-1
+      server localhost:8081 max_fails=3 fail_timeout=30s; # Reverse proxy to machine-2
+}
+
+server {
+      listen       8090;
+      server_name  localhost;
+      #charset koi8-r;
+      #access_log  logs/host.access.log  main;
+
+      location / {
+          proxy_pass http://nodejs; # Load balance the URL location "/" to the upstream lb-subprint
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+      }
+...
+}
+
+
+
