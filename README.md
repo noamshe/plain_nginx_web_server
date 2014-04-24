@@ -68,9 +68,6 @@ noam@linux-noam:/data/nginx-1.0.5$
 
 
 
-
-
-
 NGinx Load Balancer:
 sudo vim /usr/local/nginx/conf/nginx.conf
 
